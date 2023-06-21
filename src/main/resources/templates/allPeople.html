@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>все люди</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th>Login</th>
+        <th>Password</th>
+        <th>id</th>
+        <th>name</th>
+        <th>surName</th>
+        <th>city</th>
+        <th>Role</th>
+    </tr>
+    <div th:each="person : ${people}">
+        <tr>
+            <td>
+                <h th:text="${person.getLogin()}"></h>
+            </td>
+            <td>
+                <h th:text="${person.getPassword()}"></h>
+            </td>
+            <td>
+                <h th:text="${person.getId()}"></h>
+            </td>
+            <td>
+                <h th:text="${person.getName()}"></h>
+            </td>
+            <td>
+                <h th:text="${person.getSurName()}"></h>
+            </td>
+            <td>
+                <h th:text="${person.getCity()}"></h>
+            </td>
+            <td>
+               <h th:text="${person.getRole()}"></h>
+            </td>
+
+            <td>
+                <a th:href="@{{id}/edit(id=${person.getId()})}">Edit</a>
+            </td>
+            <td>
+                <form th:method="DELETE" th:action="@{/admin/{id}(id=${person.getId()})}">
+                    <input type="submit" value="Delete"/>
+                </form>
+            </td>
+        </tr>
+    </div>
+</table>
+<a th:href="@{/logout}">Logout</a>
+<br/>
+<hr/>
+
+<a href="new">Create new person</a>
+
+</body>
+</html>
+
